@@ -6,6 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>sd - Personal portfolio</title>
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    emailjs.init("lhL_4C1qAX1bbxBkp");
+  </script>
 
   <!--
     - favicon
@@ -677,16 +681,16 @@
 
           <h3 class="h3 form-title">Contact Form</h3>
 
-          <form action="#" class="form" data-form>
+          <form action="#" class="form" data-form id="myForm">
 
             <div class="input-wrapper">
-              <input type="text" name="firstname" class="form-input" placeholder="First name" required data-form-input>
-              <input type="text" name="secondname" class="form-input" placeholder="Second name" required data-form-input>
-              <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
-              <input type="tel" name="phone" class="form-input" placeholder="Phone number (Numbers only)" required data-form-input pattern="[0-9]+" title="Please enter numbers only">
+              <input type="text" id="firstname" name="firstname" class="form-input" placeholder="First name" required data-form-input>
+              <input type="text" id="secondname" name="secondname" class="form-input" placeholder="Second name" required data-form-input>
+              <input type="email" id="email"  name="email"  class="form-input" placeholder="Email address" required data-form-input>
+              <input type="tel" id="mob" name="phone" class="form-input" placeholder="Phone number (Numbers only)" required data-form-input pattern="[0-9]+" title="Please enter numbers only">
             </div>
 
-            <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
+            <textarea name="message" id="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
 
             <button class="form-btn" type="submit" disabled data-form-btn>
               <ion-icon name="paper-plane"></ion-icon>
@@ -712,6 +716,30 @@
     - custom js link
   -->
   <script src="./assets/js/script.js"></script>
+  <script>
+    document.getElementById("myForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+  
+      // Collect user input
+      var formData = {
+        name: document.getElementById("firstname").value +  document.getElementById("secondname").value ,
+        email: document.getElementById("email").value,
+        message: document.getElementById("message").value,
+        mob:document.getElementById("mob").value,
+      };
+  
+      // Use EmailJS to send the email
+      emailjs.send("service_6c0g2e7", "template_sjq9nkp", formData)
+        .then(function (response) {
+          console.log("Email sent successfully:", response);
+          // Optionally, you can redirect or show a success message here
+        })
+        .catch(function (error) {
+          console.log("Error sending email:", error);
+          // Handle error, show an error message, etc.
+        });
+    });
+  </script>
 
   <!--
     - ionicon link
