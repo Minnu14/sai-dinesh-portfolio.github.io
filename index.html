@@ -7,6 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>sd - Personal portfolio</title>
   <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
   <script>
     emailjs.init("lhL_4C1qAX1bbxBkp");
   </script>
@@ -137,7 +139,7 @@
               <ion-icon name="logo-linkedin"></ion-icon>
             </a>
           </li>
-          
+
 
           <li class="social-item">
             <a href="#" class="social-link">
@@ -207,12 +209,19 @@
 
         <section class="about-text">
           <p>
-            As a budding UI/UX designer, game developer, and graphic designer based in Hyderabad, India, I'm passionate about diving into the world of digital creativity and innovation. With a fresh perspective and a hunger for knowledge, I'm eager to tackle complex challenges and transform them into intuitive and visually stunning experiences.
+            As a budding UI/UX designer, game developer, and graphic designer based in Hyderabad, India, I'm passionate
+            about diving into the world of digital creativity and innovation. With a fresh perspective and a hunger for
+            knowledge, I'm eager to tackle complex challenges and transform them into intuitive and visually stunning
+            experiences.
             turning complex problems into simple, beautiful and intuitive designs.
           </p>
 
           <p>
-            Whether it's crafting user interfaces that resonate with users, developing captivating games that transport players to new realms of excitement, or designing graphics that leave a lasting impression, I'm dedicated to honing my skills and making a mark in the industry. As I embark on this journey, I'm excited to collaborate, learn, and grow, eager to contribute my creativity and enthusiasm to projects that inspire and delight. Let's embark on this adventure together and create something truly extraordinary.
+            Whether it's crafting user interfaces that resonate with users, developing captivating games that transport
+            players to new realms of excitement, or designing graphics that leave a lasting impression, I'm dedicated to
+            honing my skills and making a mark in the industry. As I embark on this journey, I'm excited to collaborate,
+            learn, and grow, eager to contribute my creativity and enthusiasm to projects that inspire and delight.
+            Let's embark on this adventure together and create something truly extraordinary.
           </p>
         </section>
 
@@ -352,7 +361,7 @@
         -->
 
 
-          </ul>
+        </ul>
 
         </section>
 
@@ -396,7 +405,7 @@
             </li>
 
 
-            
+
           </ul>
 
           <div class="filter-select-box">
@@ -571,7 +580,7 @@
                 <p class="project-category">UI Design</p>
               </a>
             </li>
-            
+
             <li class="project-item  active" data-filter-item data-category="app design">
               <a href="#">
 
@@ -602,7 +611,7 @@
                 <p class="project-category">UI Design</p>
               </a>
             </li>
-            
+
 
             <li class="project-item  active" data-filter-item data-category="web design">
               <a href="#">
@@ -684,13 +693,18 @@
           <form action="#" class="form" data-form id="myForm">
 
             <div class="input-wrapper">
-              <input type="text" id="firstname" name="firstname" class="form-input" placeholder="First name" required data-form-input>
-              <input type="text" id="secondname" name="secondname" class="form-input" placeholder="Second name" required data-form-input>
-              <input type="email" id="email"  name="email"  class="form-input" placeholder="Email address" required data-form-input>
-              <input type="tel" id="mob" name="phone" class="form-input" placeholder="Phone number (Numbers only)" required data-form-input pattern="[0-9]+" title="Please enter numbers only">
+              <input type="text" id="firstname" name="firstname" class="form-input" placeholder="First name" required
+                data-form-input>
+              <input type="text" id="secondname" name="secondname" class="form-input" placeholder="Second name" required
+                data-form-input>
+              <input type="email" id="email" name="email" class="form-input" placeholder="Email address" required
+                data-form-input>
+              <input type="tel" id="mob" name="phone" class="form-input" placeholder="Phone number (Numbers only)"
+                required data-form-input pattern="[0-9]+" title="Please enter numbers only">
             </div>
 
-            <textarea name="message" id="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
+            <textarea name="message" id="message" class="form-input" placeholder="Your Message" required
+              data-form-input></textarea>
 
             <button class="form-btn" type="submit" disabled data-form-btn>
               <ion-icon name="paper-plane"></ion-icon>
@@ -719,34 +733,54 @@
   <script>
     document.getElementById("myForm").addEventListener("submit", function (event) {
       event.preventDefault();
-  
+
       // Collect user input
       var formData = {
-        name: document.getElementById("firstname").value +  document.getElementById("secondname").value ,
+        name: document.getElementById("firstname").value + document.getElementById("secondname").value,
         email: document.getElementById("email").value,
         message: document.getElementById("message").value,
-        mob:document.getElementById("mob").value,
+        mob: document.getElementById("mob").value,
       };
-  
+
       // Use EmailJS to send the email
       emailjs.send("service_6c0g2e7", "template_sjq9nkp", formData)
         .then(function (response) {
           console.log("Email sent successfully:", response);
+          Swal.fire({
+            icon: "success",
+            title: "Your message has been sent Sucessfully!!",
+            showConfirmButton: false,
+            timer: 3000
+          });
+          document.getElementById("myForm").reset();
+         
+          
           // Optionally, you can redirect or show a success message here
         })
         .catch(function (error) {
           console.log("Error sending email:", error);
-          // Handle error, show an error message, etc.
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+          });
+          document.getElementById("myForm").reset();
+
+
         });
     });
+    
   </script>
 
   <!--
     - ionicon link
   -->
+
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
+  <!-- Sweet Alert Library -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>
